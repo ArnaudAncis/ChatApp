@@ -10,12 +10,12 @@ import javax.servlet.http.HttpSession;
 import domain.Person;
 import domain.PersonService;
 
-public class LogIn extends RequestHandler {
+public class LogIn extends SyncRequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		String destination = "index.jsp";
+		String destination = "chat.jsp";
 		List<String> errors = new ArrayList<String>();
 		
 		String email = request.getParameter("email");

@@ -27,6 +27,34 @@ img {
     max-width: 800px;
     display: block;
 }
+#blogDiv>div{
+    border: 1px solid black;
+    margin-top: 10px;
+    width: 100%;
+}
+#blogDiv>div>h2,p{
+    margin: 10px;
+}
+#reactions, #reactionForm{
+    margin-left: 10px;
+}
+#chat{
+    background: darkgray;
+    position: fixed;
+    width: 30%;
+    float: right;
+    bottom: 10;
+    right: 10;
+}
+#chat>input,h1{
+    margin: 5;
+}
+.addFriend{
+    display: block;
+
+}
+
+
 
 table {
     max-width: 100%;

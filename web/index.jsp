@@ -23,12 +23,13 @@
 	</div>
 </c:if> <c:choose>
 	<c:when test="${user!=null}">
-		<p>Welcome ${user.getFirstName()}!</p>
+		<p id="paragraph">Welcome ${user.getFirstName()}!</p>
 		<form method="post" action="Controller?action=LogOut">
 			<p>
 				<input type="submit" id="logoutbutton" value="Log Out">
 			</p>
 		</form>
+
 	</c:when>
 	<c:otherwise>
 		<form method="post" action="Controller?action=LogIn">
@@ -50,5 +51,9 @@
 	<jsp:include page="footer.jsp">
 		<jsp:param name="title" value="Home" />
 	</jsp:include>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+
 </body>
 </html>
