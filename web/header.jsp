@@ -8,10 +8,14 @@
 <c:choose>
 <c:when test="${param.title=='Home'}">
 <li  id="actual"><a href="index.jsp">Home</a></li>
+    <li><a href="signup.jsp">Sign Up</a></li>
 </c:when>
+
 <c:otherwise>
-    <li><a href="index.jsp">Home</a></li>
+
+    <li><a href="chat.jsp">Chat</a></li>
     <li><a href="blog.jsp">Blog</a></li>
+
     <form method="post" action="Controller?action=LogOut">
         <p>
             <input type="submit" id="logoutbutton" value="Log Out">

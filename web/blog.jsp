@@ -11,7 +11,7 @@
 <body onload="openSocket();">
 <div id="blogDiv">
 
-    <div class="blog">
+    <div class="blog" id="1">
         <h2> Blog 1</h2>
         <p>Was het een interessante projectweek?</p>
         <h2>Reacties</h2>
@@ -28,7 +28,7 @@
 
 
     </div>
-    <div class="blog">
+    <div class="blog" id="2">
         <h2> Blog 2</h2>
         <p>Wat ben je van plan te doen vandaag?</p>
         <h2>Reacties</h2>
@@ -46,7 +46,7 @@
 
     </div>
 
-    <div class="blog">
+    <div class="blog" id="3">
         <h2> Blog 3</h2>
         <p>Naar welke muziek ben je momenteel aan het luisteren?</p>
         <div class="reactions"></div>
@@ -59,7 +59,7 @@
         <button type="button" onclick="sendMessage(this);"> React</button>
     </div>
 
-    <div class="blog">
+    <div class="blog" id="4">
         <h2> Blog 4</h2>
         <p>Wat zijn de examenvragen voor het vak Web4?</p>
         <div class="reactions"></div>
@@ -71,7 +71,7 @@
         <input type="number" class="score" name="score" min="1" max="10" value="10">
         <button type="button" onclick="sendMessage(this);"> React</button>
     </div>
-    <div class="blog">
+    <div class="blog" id="5">
         <h2> Blog 5</h2>
         <p>Hoe lang gaat het duren eer deze blog werkt?</p>
         <div class="reactions"></div>

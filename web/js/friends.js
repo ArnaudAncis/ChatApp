@@ -24,8 +24,14 @@ function getFriends() {
                 var row = friendsz.insertRow(i);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML= friend;
+                var cell3 = row.insertCell(2);
+                var button = document.createElement('button');
+                button.className = "startchatbutton";
+                button.innerHTML = "Start&nbsp;Chat";
+
+                cell1.innerHTML = friend;
                 cell2.innerHTML = statusFriend;
+                cell3.appendChild(button);
             }
 
            setInterval(friends, 5000);

@@ -21,6 +21,8 @@ function sendMessage(elem){
     var reaction = parent.getElementsByClassName("reaction")[0].value;
     var name = parent.getElementsByClassName("name")[0].value;
     var score = parent.getElementsByClassName("score")[0].value;
+
+    //veranderen door JSON-Object
     var text2 = "<br/>" + name + ": " + reaction + " Score: " + score + "/10";
     webSocket.send(text2);
 }
@@ -30,5 +32,6 @@ function closeSocket(){
 }
 
 function writeResponse(text){
+    //text wordt een jsonObject, informatie halen uit dat JSON-Object
     parent.innerHTML += text;
 }

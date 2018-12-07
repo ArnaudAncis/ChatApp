@@ -23,6 +23,8 @@ public class Person {
 	private String lastName;
 	private Role role;
     private String status;
+	private String sex;
+	
     @JsonIgnore
     private List<Person> friends = new ArrayList<Person>();
 
@@ -35,7 +37,13 @@ public class Person {
         friends.add(p);
     }
 
+	public String getSex() {
+		return sex;
+	}
 
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 	public String getStatus() {
 		if(this.status == null){
@@ -53,21 +61,23 @@ public class Person {
 
 
 	public Person(String userId, String password, String firstName,
-			String lastName,Role role) {
+			String lastName, String sex, Role role) {
 		setUserId(userId);
 		setHashedPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setSex(sex);
 		setRole(role);
 	}
 
 	public Person(String userId, String password, String salt,
-			String firstName, String lastName,Role role) {
+			String firstName, String lastName, String sex, Role role) {
 		setUserId(userId);
 		setPassword(password);
 		setSalt(salt);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setSex(sex);
 		setRole(role);
 	}
 

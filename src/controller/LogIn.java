@@ -35,14 +35,16 @@ public class LogIn extends SyncRequestHandler {
 				createSession(person, request, response);
 			} else {
 				errors.add("No valid email/password");
+
 			}
 		}
 		
 		if (errors.size() > 0) {
 			request.setAttribute("errors", errors);
+			return "index.jsp";
 		}
 		
-		return destination;	
+		return destination;
 	}
 	
 	private void createSession(Person person, HttpServletRequest request,

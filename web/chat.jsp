@@ -20,23 +20,26 @@
     <p id="friend"></p>
 <p>Welcome ${user.getFirstName()}!</p>
 
-            <table id="friendsDiv">
-
-                <tr>
-                    <th>Naam</th>
-                    <th>Status</th>
-                </tr>
-
-            </table>
-
-
+    <table>
+        <thead>
+            <tr>
+                 <th>Naam</th>
+                 <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+    <tbody id="friendsDiv"></tbody>
+    </table>
 
     <Label>Change Status</Label>
     <input type="text" id="changeStatus" />
     <input type="button" id="changeStatus1" value="Change" />
+    <div id="vriendenknop">
     <label class="addFriend">Add Friend</label>
     <input type="text" id="friendName" class="addFriend"/>
     <input type="button" id="addFriendButton" value="Add" class="addFriend" />
+    </div>
+
 
     <div id="chat">
         <h1>Chat met </h1>

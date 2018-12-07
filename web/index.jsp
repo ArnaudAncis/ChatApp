@@ -43,8 +43,10 @@
 			</p>
 			<p>
 				<input type="submit" id="loginbutton" value="Log in">
+
 			</p>
 		</form>
+		<a href="signup.jsp"><button>Sign up</button></a>
 	</c:otherwise>
 </c:choose> </main>
 
