@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Person;
-import domain.PersonService;
 import domain.Role;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,16 +42,18 @@ public class SignUp extends SyncRequestHandler {
         }
 
         if (errors.size() == 0) {
-            PersonService personService = super.getPersonService();
+            PersonService personService = super.getChatService().getPersonService();
             Person person = new Person(email, password, firstName, lastName, sex, Role.LID  );
-            if(person != null){
+
+            if(person != null) {
                 personService.addPerson(person);
                 System.out.println(personService.getPersons());
                 createSession(person, request, response);
             }
-            else {
-                errors.add("Not all fields are valid");
+            else{
+                errors.add("lel");
             }
+
 
         }
 
@@ -64,6 +65,8 @@ public class SignUp extends SyncRequestHandler {
         return destination;
 
     }
+
+
     private void createSession(Person person, HttpServletRequest request,
                                HttpServletResponse response) {
         HttpSession session = request.getSession();

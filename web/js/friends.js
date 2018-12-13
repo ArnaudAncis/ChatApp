@@ -7,6 +7,7 @@ function friends(){
     friendsObject.send(null);
 }
 
+
 function getFriends() {
     if(friendsObject.readyState == 4){
         if(friendsObject.status = 200){
@@ -26,6 +27,7 @@ function getFriends() {
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var button = document.createElement('button');
+               // button.type = "button";
                 button.className = "startchatbutton";
                 button.innerHTML = "Start&nbsp;Chat";
 
@@ -34,7 +36,7 @@ function getFriends() {
                 cell3.appendChild(button);
             }
 
-           setInterval(friends, 5000);
+           setInterval(friends, 20000);
 
 
 

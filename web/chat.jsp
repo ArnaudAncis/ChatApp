@@ -18,7 +18,9 @@
 <div id ="statusDiv">
     <p id="status"></p>
     <p id="friend"></p>
+
 <p>Welcome ${user.getFirstName()}!</p>
+<button type="button" onclick="getMessages();">messsssss</button>
 
     <table>
         <thead>
@@ -26,10 +28,14 @@
                  <th>Naam</th>
                  <th>Status</th>
                 <th></th>
+
             </tr>
         </thead>
     <tbody id="friendsDiv"></tbody>
     </table>
+    <div id="chatWindowDiv">
+        <!-- chat hier -->
+    </div>
 
     <Label>Change Status</Label>
     <input type="text" id="changeStatus" />
@@ -41,21 +47,29 @@
     </div>
 
 
-    <div id="chat">
-        <h1>Chat met </h1>
+    <div id="chat" onload="">
 
-        <input type="text" id="chatText"/>
+
     </div>
     <input type="button" id="openChat" value="Open Chat">
 
+
     <!-- belangrijk dat script dan pas op het einde wordt geladen als je met event handlers werkt -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
+
+
     <script type="text/javascript" src="js/status.js"></script>
     <script type="text/javascript" src="js/changeStatus.js"></script>
     <script type="text/javascript" src="js/friends.js"></script>
     <script type="text/javascript" src="js/addfriend.js"></script>
+    <script type="text/javascript" src="js/chat.js"></script>
+    <script src="js/jq.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script>
+
+    </script>
 </div>
+
 
 
 

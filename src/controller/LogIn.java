@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.Person;
-import domain.PersonService;
 
 public class LogIn extends SyncRequestHandler {
 
@@ -29,7 +28,7 @@ public class LogIn extends SyncRequestHandler {
 		}
 		
 		if (errors.size() == 0) {
-			PersonService personService = super.getPersonService();
+			PersonService personService = super.getChatService().getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
 				createSession(person, request, response);
@@ -46,7 +45,9 @@ public class LogIn extends SyncRequestHandler {
 		
 		return destination;
 	}
-	
+
+
+
 	private void createSession(Person person, HttpServletRequest request,
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();

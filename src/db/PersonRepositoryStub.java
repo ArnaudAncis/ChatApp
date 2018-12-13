@@ -29,6 +29,26 @@ public class PersonRepositoryStub implements PersonRepository {
 		an.addFriend(Arnaud);
 		//an.addFriend(jan);
 	}
+
+	public Person getUser(String email){
+		for (Map.Entry<String, Person> entry : persons.entrySet())
+		{
+			if (entry.getValue().getUserId().equals(email)) {
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
+
+	public Person getUserByName(String name){
+		for (Map.Entry<String, Person> entry : persons.entrySet())
+		{
+			if (entry.getValue().getFirstName().equals(name)) {
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
 	
 	public Person get(String personId){
 		if(personId == null){

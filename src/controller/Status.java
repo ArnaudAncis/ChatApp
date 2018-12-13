@@ -14,4 +14,6 @@ public class Status extends AsyncRequestHandler{
         Person p = (Person)session.getAttribute("user");
         return p.getStatus();
     }
+
+
 }

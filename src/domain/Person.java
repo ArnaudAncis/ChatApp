@@ -1,6 +1,7 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -8,7 +9,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,16 +19,53 @@ public class Person {
 
 	private String userId;
 	private String password;
-
-
     private String salt;
+
 	private String firstName;
+
 	private String lastName;
 	private Role role;
+
     private String status;
-	private String sex;
-	
-    @JsonIgnore
+
+    private String sex;
+
+	@JsonIgnore
+	private Map<String, Chat> chatSessions = new HashMap<>();
+
+	public Map<String, Chat> getChatSessions() {
+		return chatSessions;
+	}
+
+	public void setChatSessions(Map<String, Chat> chatSessions) {
+		this.chatSessions = chatSessions;
+	}
+
+	public Chat getChatSessie(String firstName) {
+
+		for (Map.Entry<String, Chat> entry : chatSessions.entrySet())
+		{
+			if (entry.getKey().equals(firstName)) {
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
+
+
+	public void addChat(String person, Chat c) {
+		chatSessions.put(person, c);
+	}
+	public void addMessage(Message b, String firstName) {
+		for (Map.Entry<String, Chat> entry : chatSessions.entrySet())
+		{
+			if (entry.getKey().equals(firstName)) {
+				entry.getValue().addMessage(b);
+			}
+		}
+	}
+
+	@JsonIgnore
     private List<Person> friends = new ArrayList<Person>();
 
     public List<Person> getFriends() {

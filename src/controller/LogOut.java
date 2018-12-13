@@ -13,5 +13,7 @@ public class LogOut extends SyncRequestHandler {
 		session.invalidate();
 		return "index.jsp";
 	}
-	
+
+
+
 }

@@ -39,7 +39,7 @@ img {
     margin-left: 10px;
 }
 #chat{
-    background: darkgray;
+    //background: darkgray;
     position: fixed;
     width: 30%;
     float: right;
@@ -51,9 +51,25 @@ img {
 }
 #vriendenknop{
     display: block;
-
+}
+#chat>div{
+    background: darkgray;
+    display: inline-block;
+    margin-top: 2%;
+    position: relative;
+    height: 250px;
+}
+#chat>div>button{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
 }
 
+#chat>div>div{
+    overflow-y:scroll;
+    height:120px;
+
+}
 
 
 table {

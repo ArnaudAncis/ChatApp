@@ -1,9 +1,10 @@
-package domain;
+package controller;
 
 import java.util.List;
 
 import db.PersonRepository;
 import db.PersonRepositoryStub;
+import domain.Person;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();
@@ -14,6 +15,11 @@ public class PersonService {
 	public Person getPerson(String personId)  {
 		return getPersonRepository().get(personId);
 	}
+	public Person getPersonByName(String name)  {
+		return getPersonRepository().getUserByName(name);
+	}
+
+
 
 	public List<Person> getPersons() {
 		return getPersonRepository().getAll();
