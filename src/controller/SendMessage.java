@@ -28,7 +28,7 @@ public class SendMessage extends AsyncRequestHandler {
 
         String ontvanger = (String) jsonObject.get("ontvanger");
         Person otherUser = Controller.getInstance().getChatService().getPersonService().getPersonByName(ontvanger);
-        Message b = new Message((String) jsonObject.get("bericht"), otherUser, zender);
+        Message b = new Message((String) jsonObject.get("bericht"), zender, otherUser);
         Conversation c = Controller.getInstance().getChatService().getConversation(zender, otherUser);
 
         if(c == null){

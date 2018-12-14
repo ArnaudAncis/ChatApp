@@ -29,12 +29,7 @@ public class GetChatMessages extends AsyncRequestHandler {
         Person p = (Person) request.getSession().getAttribute("user");
         //Person an = Controller.getInstance().getChatService().getPersonService().getPersonByName("An");
         System.out.println(Controller.getInstance().getChatService().getAllBerichten());
-
-        //zender in jsonbericht hardcoded steken
-
-        String json = "[{\"from\":\p.getFirstName()
-        JsonObject jsonObject = [{"user":"name"}];
-        return toJSON(Controller.getInstance().getChatService().getAllBerichten());
+        return toJSON(Controller.getInstance().getChatService().getAllBerichtenFromUser(p));
     }
 
     public String toJSON(List<Message> messages) throws JsonProcessingException {

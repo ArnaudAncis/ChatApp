@@ -7,6 +7,8 @@
 // var chatObject = new XMLHttpRequest();
 // var chatObject2 = new XMLHttpRequest();
 
+var naam =
+
 $(document).on('click', '.startchatbutton', function(){
    // add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
    make_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
@@ -30,7 +32,7 @@ function make_chat(name){
 }
 
 function add_chat(name) {
-    console.log("TEST" + name);
+    //console.log("TEST" + name);
     if (!isErAlEenChatWindow()) {
         var chatDiv = document.getElementById('chat');
         var childDivs = document.getElementById('chat').getElementsByTagName('div');
@@ -129,7 +131,7 @@ function isErAlEenChatWindow(naam) {
 }
 
 function sendMessage(inputButton, namePartner) {
-    console.log("TestSend" +namePartner)
+    //console.log("TestSend" +namePartner)
     var textVeld = inputButton.parentNode.getElementsByClassName("inputField")[0];
     var berichtText = textVeld.value;
     textVeld.value = "";
@@ -145,60 +147,57 @@ function sendMessage(inputButton, namePartner) {
         data: "b=" + berichtObjectJSON,
         dataType: "json",
     });
+    getMessages();
 }
-    function getMessages() {
+    function getMessages(name) {
         $.ajax({
             url: "Controller?action=GetChatMessages",
             type: "GET",
             dataType: "json",
             success: function (json) {
-               console.log(json);
+               //console.log(json);
                addBerichtBijVenster(json);
+               setTimeout(getMessages, 5000);
 
         }
         });
-       // setInterval(getMessages(), 12000);
+
 }
     function addBerichtBijVenster(berichtObject) {
         var bericht;
         var zender;
         var l = "chat" ;
         var berichtDiv = document.createElement("div");
+
         //bericht = berichtObject.bericht;
 
         for (var i = 0; i < berichtObject.length; i++) {
-            bericht = berichtObject[i].text;
+            //bericht = berichtObject[i].text;
             zender = berichtObject[i].ontvanger.firstName;
-            console.log(zender);
+            bericht = zender + ": " + berichtObject[i].text;
+            //console.log(zender);
 
+            var berichtenRuimte = document.getElementById(l + berichtObject[i].sender.firstName);
+            if(berichtenRuimte == null){
+                berichtenRuimte = document.getElementById(l + berichtObject[i].ontvanger.firstName);
+                console.log(berichtenRuimte.id);
+            }
+                berichtenRuimte.innerHTML = "";
 
-            // if (zender === naamPartner) {
-            //     berichtDiv.className = "berichtVanPartner";
-            // } else {
-            //     berichtDiv.className = "berichtVanMij";
-            // }
-            var berichtenRuimte = document.getElementById(l + zender);
-            berichtenRuimte.innerHTML = "";
             var node = document.createTextNode(bericht);
-
+            var check = l + zender;
+            if(check == berichtenRuimte.id){
+                berichtDiv.className == "berichtVanMij";
+            }
+            else{
+                berichtDiv.className = "berichtVanPartner";
+            }
             berichtDiv.appendChild(node);
+            berichtDiv.appendChild(document.createElement('br'));
             berichtenRuimte.appendChild(berichtDiv);
 
+
         }
-
-        //    // var berichtDiv = document.createElement("div");
-        //     if (zender === naamPartner) {
-        //         berichtDiv.className = "berichtVanPartner";
-        //     } else {
-        //         berichtDiv.className = "berichtVanMij";
-        // }
-        //     var t = document.createTextNode(bericht);
-        //     console.log(t);
-        //
-        //     berichtenRuimte.appendChild(t);
-        //     berichtenRuimte.appendChild(document.createElement('br'));
-
-
 
 
     }

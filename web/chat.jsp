@@ -61,7 +61,6 @@
     <script type="text/javascript" src="js/changeStatus.js"></script>
     <script type="text/javascript" src="js/friends.js"></script>
     <script type="text/javascript" src="js/addfriend.js"></script>
-    <script type="text/javascript" src="js/chat.js"></script>
     <script src="js/jq.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
 
