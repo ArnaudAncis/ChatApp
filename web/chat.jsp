@@ -19,7 +19,7 @@
     <p id="status"></p>
     <p id="friend"></p>
 
-<p>Welcome ${user.getFirstName()}!</p>
+<p>Welcome ${user.getUserId()}!</p>
 <button type="button" onclick="getMessages();">messsssss</button>
 
     <table>

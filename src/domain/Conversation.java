@@ -7,12 +7,12 @@ public class Conversation {
 
     private Person user1;
     private Person user2;
-    private List<Message> berichten;
+    private List<Message> messages;
 
     public Conversation(Person user1, Person user2) {
         this.user1 = user1;
         this.user2 = user2;
-        this.berichten = new ArrayList<>();
+        this.messages = new ArrayList<>();
     }
 
     public Person getUser1() {
@@ -32,14 +32,14 @@ public class Conversation {
     }
 
     public List<Message> getBerichten() {
-        return berichten;
+        return messages;
     }
 
     public void setBerichten(List<Message> berichten) {
-        this.berichten = berichten;
+        this.messages = berichten;
     }
 
     public void addBericht(Message m){
-        berichten.add(m);
+        messages.add(m);
     }
 }

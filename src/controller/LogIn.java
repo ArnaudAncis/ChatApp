@@ -28,7 +28,7 @@ public class LogIn extends SyncRequestHandler {
 		}
 		
 		if (errors.size() == 0) {
-			PersonService personService = super.getChatService().getPersonService();
+			PersonService personService = Controller.getInstance().getChatService().getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
 				createSession(person, request, response);

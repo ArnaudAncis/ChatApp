@@ -1,13 +1,12 @@
 package domain;
 
-import com.google.gson.annotations.Expose;
 
 public class Message {
 
-    @Expose
+
     private String text;
-    @Expose
-    private Person person;
+    private Person ontvanger;
+    private Person sender;
 
     public String getText() {
         return text;
@@ -17,18 +16,26 @@ public class Message {
         this.text = text;
     }
 
-    public Person getPerson() {
-        return person;
+    public Person getOntvanger() {
+        return ontvanger;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setOntvanger(Person person) {
+        this.ontvanger = person;
     }
 
+    public Person getSender() {
+        return sender;
+    }
 
-    public Message(String text, Person person) {
+    public void setSender(Person sender) {
+        this.sender = sender;
+    }
+
+    public Message(String text, Person ontvanger, Person sender) {
         this.text = text;
-        this.person = person;
+        this.ontvanger = ontvanger;
+        this.sender = sender;
     }
 
 

@@ -36,7 +36,7 @@ function getFriends() {
                 cell3.appendChild(button);
             }
 
-           setInterval(friends, 20000);
+           setInterval(friends, 5000);
 
 
 

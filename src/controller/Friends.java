@@ -13,7 +13,6 @@ public class Friends extends AsyncRequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("user");
-       // System.out.println(person.getFirstName());
         try {
             return toJSON(person.getFriends());
         } catch (JsonProcessingException e) {
@@ -22,9 +21,6 @@ public class Friends extends AsyncRequestHandler {
 
         return null;
     }
-
-
-
 
     public String toJSON (List<Person> friends) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

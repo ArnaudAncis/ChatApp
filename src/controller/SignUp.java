@@ -12,7 +12,7 @@ import java.util.List;
 public class SignUp extends SyncRequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        String destination = "index.jsp";
+        String destination = "chat.jsp";
         List<String> errors = new ArrayList<String>();
 
         String firstName = request.getParameter("firstName");
@@ -42,12 +42,13 @@ public class SignUp extends SyncRequestHandler {
         }
 
         if (errors.size() == 0) {
-            PersonService personService = super.getChatService().getPersonService();
+            PersonService personService = Controller.getInstance().getChatService().getPersonService();
             Person person = new Person(email, password, firstName, lastName, sex, Role.LID  );
 
             if(person != null) {
                 personService.addPerson(person);
                 System.out.println(personService.getPersons());
+                System.out.println(person.getUserId());
                 createSession(person, request, response);
             }
             else{

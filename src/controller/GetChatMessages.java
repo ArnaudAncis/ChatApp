@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import domain.Chat;
 import domain.Conversation;
 import domain.Message;
@@ -24,10 +25,15 @@ public class GetChatMessages extends AsyncRequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println(Controller.getInstance().getChatService().getConversations());
         Person p = (Person) request.getSession().getAttribute("user");
-        Person an = Controller.getInstance().getChatService().getPersonService().getPersonByName("An");
-        //Conversation conversation = Controller.getInstance().getChatService().getConversation(p, an);
+        //Person an = Controller.getInstance().getChatService().getPersonService().getPersonByName("An");
         System.out.println(Controller.getInstance().getChatService().getAllBerichten());
+
+        //zender in jsonbericht hardcoded steken
+
+        String json = "[{\"from\":\p.getFirstName()
+        JsonObject jsonObject = [{"user":"name"}];
         return toJSON(Controller.getInstance().getChatService().getAllBerichten());
     }
 

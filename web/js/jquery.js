@@ -30,6 +30,7 @@ function make_chat(name){
 }
 
 function add_chat(name) {
+    console.log("TEST" + name);
     if (!isErAlEenChatWindow()) {
         var chatDiv = document.getElementById('chat');
         var childDivs = document.getElementById('chat').getElementsByTagName('div');
@@ -128,7 +129,7 @@ function isErAlEenChatWindow(naam) {
 }
 
 function sendMessage(inputButton, namePartner) {
-
+    console.log("TestSend" +namePartner)
     var textVeld = inputButton.parentNode.getElementsByClassName("inputField")[0];
     var berichtText = textVeld.value;
     textVeld.value = "";
@@ -152,12 +153,11 @@ function sendMessage(inputButton, namePartner) {
             dataType: "json",
             success: function (json) {
                console.log(json);
-               console.log(json.berichten);
                addBerichtBijVenster(json);
 
         }
         });
-        //setInterval(getMessages(), 5000);
+       // setInterval(getMessages(), 12000);
 }
     function addBerichtBijVenster(berichtObject) {
         var bericht;
@@ -168,7 +168,7 @@ function sendMessage(inputButton, namePartner) {
 
         for (var i = 0; i < berichtObject.length; i++) {
             bericht = berichtObject[i].text;
-            zender = berichtObject[i].person.firstName;
+            zender = berichtObject[i].ontvanger.firstName;
             console.log(zender);
 
 
@@ -179,8 +179,9 @@ function sendMessage(inputButton, namePartner) {
             // }
             var berichtenRuimte = document.getElementById(l + zender);
             berichtenRuimte.innerHTML = "";
+            var node = document.createTextNode(bericht);
 
-            berichtDiv.appendChild(bericht);
+            berichtDiv.appendChild(node);
             berichtenRuimte.appendChild(berichtDiv);
 
         }

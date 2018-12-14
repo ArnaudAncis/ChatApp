@@ -1,14 +1,9 @@
 package controller;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import db.PersonRepository;
 import domain.Person;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
 
 public class AddFriendsHandler extends AsyncRequestHandler {
 
@@ -16,11 +11,17 @@ public class AddFriendsHandler extends AsyncRequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String friend = request.getParameter("friend");
-        Person person = new Person();
-        person.setFirstName(friend);
+        Person vriend = super.getChatService().getPersonService().getPersonByName(friend);
+        if(vriend == null) {
+            System.out.println("geen vriend");
+        }
+
         Person p = (Person) session.getAttribute("user");
-        p.addFriend(person);
-        person.addFriend(p);
+        if(p.getFriends().contains(vriend)){
+            return null;
+        }
+        p.addFriend(vriend);
+        vriend.addFriend(p);
         return friend;
 
 
