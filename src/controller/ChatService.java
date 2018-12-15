@@ -1,8 +1,5 @@
 package controller;
 
-import db.ChatRepository;
-import db.ChatRepositoryStub;
-import domain.Chat;
 import domain.Conversation;
 import domain.Message;
 import domain.Person;
@@ -15,23 +12,15 @@ public class ChatService {
     private PersonService personService;
 
 
-    private MessageService messageService;
-    private ChatRepository chatRepository = new ChatRepositoryStub();
     private List<Conversation> conversations = new ArrayList<>();
 
 
     public ChatService () {
         personService = new PersonService();
-        messageService = new MessageService();
 
     }
 
-    public void addChat(Chat c){
-        chatRepository.addChat(c);
-    }
-    public List<Chat> getChats(){
-        return chatRepository.getChats();
-    }
+
 
     public Conversation newConversation(Person p, Person p1){
         Conversation c = new Conversation(p,p1);
@@ -70,10 +59,20 @@ public class ChatService {
         return result;
     }
 
-
-    public Chat getChat(Chat c){
-        return chatRepository.getChat(c);
+    public List<Message> getAllBerichtenFromUsers(Person p, Person p2){
+        List<Message> result = new ArrayList<>();
+        for (int i = 0; i!=conversations.size(); i++){
+            if((conversations.get(i).getUser1() == p && conversations.get(i).getUser2() == p2)
+                    || (conversations.get(i).getUser1() == p2 && conversations.get(i).getUser2() == p)  ){
+                result.addAll(conversations.get(i).getBerichten());
+            }
+        }
+        return result;
     }
+
+
+
+
 
     public PersonService getPersonService() {
         return personService;
@@ -83,14 +82,6 @@ public class ChatService {
         this.personService = personService;
     }
 
-
-    public MessageService getMessageService() {
-        return messageService;
-    }
-
-    public void setMessageService(MessageService messageService) {
-        this.messageService = messageService;
-    }
 
 
 }

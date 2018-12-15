@@ -21,6 +21,9 @@ public class AddFriendsHandler extends AsyncRequestHandler {
             return null;
         }
         p.addFriend(vriend);
+        if(vriend.getFriends().contains(p)){
+            return null;
+        }
         vriend.addFriend(p);
         return friend;
 

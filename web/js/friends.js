@@ -29,14 +29,14 @@ function getFriends() {
                 var button = document.createElement('button');
                // button.type = "button";
                 button.className = "startchatbutton";
-                button.innerHTML = "Start&nbsp;Chat";
+                button.innerHTML = "Open/Close&nbsp;Chat";
 
                 cell1.innerHTML = friend;
                 cell2.innerHTML = statusFriend;
                 cell3.appendChild(button);
             }
 
-           setInterval(friends, 5000);
+           setTimeout(friends, 5000);
 
 
 

@@ -7,13 +7,14 @@
 // var chatObject = new XMLHttpRequest();
 // var chatObject2 = new XMLHttpRequest();
 
-var naam =
+var naam;
+
 
 $(document).on('click', '.startchatbutton', function(){
    // add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
-   make_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
+    make_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
     add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
-
+    //getMessages(this.parentNode.parentNode.childNodes[0].innerHTML);
 });
 
 function make_chat(name){
@@ -24,9 +25,6 @@ function make_chat(name){
         data: "b=" + name,
         dataType: "json",
         success: function(json){
-            //add_chat(name);
-
-
 
         },});
 }
@@ -38,6 +36,7 @@ function add_chat(name) {
         var childDivs = document.getElementById('chat').getElementsByTagName('div');
         for (var i = 0; i < childDivs.length; i++) {
             if (childDivs[i].id == name) {
+                $(document.getElementById(name)).fadeToggle("slow");
                 return null;
             }
         }
@@ -51,74 +50,28 @@ function add_chat(name) {
         var input = document.createElement('input');
         input.type = "text";
         input.className = "inputField";
-        nieuwechat.appendChild(input);
-        var inputButton = document.createElement('button');
+
+        var inputButton = document.createElement('input');
+        inputButton.type = "button";
         inputButton.className = "inputButton";
-        inputButton.innerHTML = "Send&nbsp;Message";
+        inputButton.value = "Send";
         var paraDiv = document.createElement('div');
         paraDiv.id= "chat" + name;
         inputButton.addEventListener("click", function () {
-            sendMessage(inputButton, name)
+            sendMessage(inputButton, name);
+
+
         })
 
-        nieuwechat.appendChild(inputButton);
+
         nieuwechat.appendChild(paraDiv);
+        nieuwechat.appendChild(input);
+        nieuwechat.appendChild(inputButton);
+        getMessages(name);
 
     }
 }
 
-
-// function openChat(partner) {
-//     if (!isErAlEenChatWindow(partner)) {
-//
-//         var chatWindow = document.createElement("div");
-//         chatWindow.className = "chatWindow";
-//         chatWindow.setAttribute("id", partner + "Chat");
-//
-//         var navBar = document.createElement("div");
-//         navBar.className = "chatWindowNavBar";
-//         chatWindow.appendChild(navBar);
-//
-//         var partnerName = document.createElement("span");
-//         partnerName.className = "partnerName";
-//         partnerName.innerHTML = partner;
-//         navBar.appendChild(partnerName);
-//
-//         var closeButton = document.createElement("div");
-//         closeButton.className = "closeButton";
-//         closeButton.innerHTML = "X";
-//         closeButtonFunction(closeButton);
-//         navBar.appendChild(closeButton);
-//
-//         var messages = document.createElement("div");
-//         messages.className = "messages";
-//         chatWindow.appendChild(messages);
-//
-//         var inputDiv = document.createElement("div");
-//         inputDiv.className = "inputDiv";
-//         chatWindow.appendChild(inputDiv);
-//
-//         var inputField = document.createElement("textarea");
-//         inputField.className = "inputField";
-//         inputDiv.appendChild(inputField);
-//
-//         var sendButton = document.createElement("button");
-//         sendButton.className = "sendButton";
-//         sendButton.innerHTML = "Send";
-//         sendButton.addEventListener("click", function () {
-//             zendBericht(sendButton, partner);
-//         });
-//
-//         inputDiv.appendChild(sendButton);
-//
-//
-//
-//         var br = document.createElement("br");
-//         chatWindow.appendChild(br);
-//         $("#chatWindowDiv").append(chatWindow);
-//
-//     }
-// }
 
 function isErAlEenChatWindow(naam) {
     var chatWindows = document.getElementsByClassName("nieuweChat");
@@ -131,7 +84,6 @@ function isErAlEenChatWindow(naam) {
 }
 
 function sendMessage(inputButton, namePartner) {
-    //console.log("TestSend" +namePartner)
     var textVeld = inputButton.parentNode.getElementsByClassName("inputField")[0];
     var berichtText = textVeld.value;
     textVeld.value = "";
@@ -146,36 +98,42 @@ function sendMessage(inputButton, namePartner) {
         type: "POST",
         data: "b=" + berichtObjectJSON,
         dataType: "json",
-    });
-    getMessages();
-}
-    function getMessages(name) {
-        $.ajax({
-            url: "Controller?action=GetChatMessages",
-            type: "GET",
-            dataType: "json",
-            success: function (json) {
-               //console.log(json);
-               addBerichtBijVenster(json);
-               setTimeout(getMessages, 5000);
+        success: function (json) {
+           //console.log(json);
 
         }
-        });
+    });
 
 }
-    function addBerichtBijVenster(berichtObject) {
+function getMessages(name) {
+    //console.log(naam);
+        $.ajax({
+            url: "Controller?action=GetChatMessages",
+            type: "POST",
+            data: "naam=" + name,
+            dataType: "json",
+            success: function (json) {
+                console.log(json);
+                //setTimeout(getMessages(name), 5000);
+                addBerichtBijVenster(json, name);
+        }
+
+        });
+    setTimeout(function (){getMessages(name)}, 3000);
+
+}
+   /* function addBerichtBijVenster(berichtObject, name ) {
+
         var bericht;
         var zender;
         var l = "chat" ;
-        var berichtDiv = document.createElement("div");
 
-        //bericht = berichtObject.bericht;
 
         for (var i = 0; i < berichtObject.length; i++) {
-            //bericht = berichtObject[i].text;
+
             zender = berichtObject[i].ontvanger.firstName;
             bericht = zender + ": " + berichtObject[i].text;
-            //console.log(zender);
+
 
             var berichtenRuimte = document.getElementById(l + berichtObject[i].sender.firstName);
             if(berichtenRuimte == null){
@@ -185,8 +143,8 @@ function sendMessage(inputButton, namePartner) {
                 berichtenRuimte.innerHTML = "";
 
             var node = document.createTextNode(bericht);
-            var check = l + zender;
-            if(check == berichtenRuimte.id){
+            var berichtDiv = document.createElement("div");
+            if(berichtObject[i].sender.firstName ==  name){
                 berichtDiv.className == "berichtVanMij";
             }
             else{
@@ -195,12 +153,34 @@ function sendMessage(inputButton, namePartner) {
             berichtDiv.appendChild(node);
             berichtDiv.appendChild(document.createElement('br'));
             berichtenRuimte.appendChild(berichtDiv);
+        }
+    }*/
 
+function addBerichtBijVenster(berichtObject, naamPartner) {
+    console.log(berichtObject);
+    var bericht;
+    var zender;
+    var berichtenRuimte = document.getElementById("chat" + naamPartner );
+    berichtenRuimte.innerHTML = "";
 
+    for (var i = 0; i < berichtObject.length; i++) {
+        zender = berichtObject[i].ontvanger.firstName;
+        bericht = berichtObject[i].text;
+
+        var berichtDiv = document.createElement("div");
+        if (zender === naamPartner) {
+            berichtDiv.className = "berichtVanPartner";
+        } else {
+            berichtDiv.className = "berichtVanMij";
         }
 
+        berichtDiv.appendChild(document.createElement('br'));
+        berichtDiv.innerHTML = bericht;
+        berichtenRuimte.appendChild(berichtDiv);
 
     }
+
+}
 
     function closeButtonFunction(closeButton) {
         closeButton.addEventListener("click", function () {

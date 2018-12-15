@@ -1,11 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import domain.Conversation;
 import org.json.JSONObject;
@@ -20,7 +23,7 @@ public class SendMessage extends AsyncRequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String jsonBericht = request.getParameter("b");
-        System.out.println(jsonBericht);
+        //System.out.println(jsonBericht);
         JSONObject jsonObject = new JSONObject(jsonBericht);
 
         Person zender = (Person) request.getSession().getAttribute("user");
@@ -37,43 +40,15 @@ public class SendMessage extends AsyncRequestHandler {
         }
 
         c.addBericht(b);
-        System.out.println(c.getBerichten());
+        //System.out.println(c.getBerichten());
+        jsonObject.put("sender", zender.getFirstName());
 
-
-
-//        Chat zenderChat = zender.getChatSessie(ontvanger);
-//        Chat ontvangerChat = otherUser.getChatSessie(zender.getFirstName());
-//
-//
-//        if (zenderChat == null) {
-//            Chat chat = new Chat(zender, otherUser);
-//            chat.addMessage(b);
-//            zender.addChat(ontvanger, chat);
-//            System.out.println("yes");
-//
-//        }else{
-//            zenderChat.addMessage(b);
-//        }
-//        if (ontvangerChat == null){
-//            Chat chat = new Chat(zender, otherUser);
-//            chat.addMessage(b);
-//            otherUser.addChat(zender.getFirstName(), chat);
-//            System.out.println("yes");
-//
-//        } else{
-//            ontvangerChat.addMessage(b);
-//        }
-//
-//        zender.addMessage(b, ontvanger);
-//        otherUser.addMessage(b, zender.getFirstName());
-
-
-
-//        System.out.println(zenderChat.getFrom().getFirstName() + " " + zenderChat.getTo().getFirstName() + " " + ontvangerChat.getFrom().getFirstName() + " " + ontvangerChat.getTo().getFirstName());
-//        System.out.println(zenderChat.getMessages() + " " + ontvangerChat.getMessages() );
-//        System.out.println(jsonBericht);
-        return jsonBericht;
+        return jsonObject.toString();
     }
+//    public String toJSON(List<Message> messages) throws JsonProcessingException {
+//        ObjectMapper mapper = new ObjectMapper();
+//        return mapper.writeValueAsString(messages);
+//    }
 }
 
 

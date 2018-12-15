@@ -15,13 +15,17 @@
 <jsp:include page="header.jsp">
     <jsp:param name="title" value="Chat" />
 </jsp:include>
-<div id ="statusDiv">
+
+<div id="changeStatusknop">
+    <Label>Change Status</Label>
+    <input type="text" id="changeStatus" />
+    <input type="button" id="changeStatus1" value="Change" />
     <p id="status"></p>
-    <p id="friend"></p>
+</div>
+<div id ="statusDiv">
 
-<p>Welcome ${user.getUserId()}!</p>
-<button type="button" onclick="getMessages();">messsssss</button>
 
+<p>Welcome ${user.getFirstName()}!</p>
     <table>
         <thead>
             <tr>
@@ -37,22 +41,13 @@
         <!-- chat hier -->
     </div>
 
-    <Label>Change Status</Label>
-    <input type="text" id="changeStatus" />
-    <input type="button" id="changeStatus1" value="Change" />
     <div id="vriendenknop">
     <label class="addFriend">Add Friend</label>
     <input type="text" id="friendName" class="addFriend"/>
     <input type="button" id="addFriendButton" value="Add" class="addFriend" />
     </div>
 
-
-    <div id="chat" onload="">
-
-
-    </div>
-    <input type="button" id="openChat" value="Open Chat">
-
+    <div id="chat" onload=""></div>
 
     <!-- belangrijk dat script dan pas op het einde wordt geladen als je met event handlers werkt -->
 
