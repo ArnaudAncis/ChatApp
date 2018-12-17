@@ -20,50 +20,11 @@ public class Person {
 	private String userId;
 	private String password;
     private String salt;
-
 	private String firstName;
-
 	private String lastName;
 	private Role role;
-
     private String status;
-
     private String sex;
-
-	@JsonIgnore
-	private Map<String, Chat> chatSessions = new HashMap<>();
-
-	public Map<String, Chat> getChatSessions() {
-		return chatSessions;
-	}
-
-	public void setChatSessions(Map<String, Chat> chatSessions) {
-		this.chatSessions = chatSessions;
-	}
-
-	public Chat getChatSessie(String firstName) {
-
-		for (Map.Entry<String, Chat> entry : chatSessions.entrySet())
-		{
-			if (entry.getKey().equals(firstName)) {
-				return entry.getValue();
-			}
-		}
-		return null;
-	}
-
-
-	public void addChat(String person, Chat c) {
-		chatSessions.put(person, c);
-	}
-	public void addMessage(Message b, String firstName) {
-		for (Map.Entry<String, Chat> entry : chatSessions.entrySet())
-		{
-			if (entry.getKey().equals(firstName)) {
-				entry.getValue().addMessage(b);
-			}
-		}
-	}
 
 	@JsonIgnore
     private List<Person> friends = new ArrayList<Person>();
@@ -71,7 +32,6 @@ public class Person {
     public List<Person> getFriends() {
         return friends;
     }
-
 
     public void addFriend(Person p){
         friends.add(p);

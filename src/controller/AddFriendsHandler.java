@@ -13,12 +13,12 @@ public class AddFriendsHandler extends AsyncRequestHandler {
         String friend = request.getParameter("friend");
         Person vriend = Controller.getInstance().getChatService().getPersonService().getPersonByName(friend);
         if(vriend == null) {
-            System.out.println("geen vriend");
+            return "nope";
         }
 
         Person p = (Person) session.getAttribute("user");
         if(p.getFriends().contains(vriend)){
-            return null;
+            return "nope";
         }
         p.addFriend(vriend);
         if(vriend.getFriends().contains(p)){

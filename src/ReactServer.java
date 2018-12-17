@@ -16,8 +16,6 @@ public class ReactServer {
 
     @OnOpen
     public void onOpen(Session session){
-       //System.out.println(session.getId() + " has opened a connection");
-        //sendMessageToAll("User has connected");
         sessions.add(session);
     }
 

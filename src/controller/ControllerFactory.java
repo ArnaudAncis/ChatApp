@@ -1,7 +1,5 @@
 package controller;
 
-import domain.Chat;
-
 public class ControllerFactory {
 	
     public RequestHandler getController(String key, ChatService model) {

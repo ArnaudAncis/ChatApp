@@ -47,8 +47,6 @@ public class SignUp extends SyncRequestHandler {
 
             if(person != null) {
                 personService.addPerson(person);
-                System.out.println(personService.getPersons());
-                System.out.println(person.getUserId());
                 createSession(person, request, response);
             }
             else{

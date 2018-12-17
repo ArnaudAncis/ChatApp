@@ -24,7 +24,6 @@
 </div>
 <div id ="statusDiv">
 
-
 <p>Welcome ${user.getFirstName()}!</p>
     <table>
         <thead>
@@ -37,9 +36,8 @@
         </thead>
     <tbody id="friendsDiv"></tbody>
     </table>
-    <div id="chatWindowDiv">
-        <!-- chat hier -->
-    </div>
+    <div id="popup">Click here to see all users</div>
+    <span class="popuptext" id="myPopup"></span>
 
     <div id="vriendenknop">
     <label class="addFriend">Add Friend</label>

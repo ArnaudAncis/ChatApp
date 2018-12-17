@@ -1,36 +1,50 @@
-// $(document).ready(function() {
-//     $('#openChat').click(function(){
-//         $('#chat').fadeToggle("slow");
-//
-//     })
-// })
-// var chatObject = new XMLHttpRequest();
-// var chatObject2 = new XMLHttpRequest();
 
-var naam;
+$(document).ready(function(){
+    $("#popup").click(function(){
+        $.get("http://localhost:8080/Controller?action=Users", function(data){
+            var popup = document.getElementById("myPopup");
+            var div = document.getElementById("popup");
+            popup.innerHTML = "";
+
+            if(div.innerHTML == "Click here to see all users"){
+                div.innerHTML = "";
+                div.innerHTML= "Click here to hide all users";
+            }
+            else{
+                div.innerHTML = "";
+                div.innerHTML= "Click here to see all users";
+            }
+            for(var i = 0; i!=data.length; i++){
+                popup.innerHTML += " ";
+               popup.innerHTML += data[i].firstName;
+               if(i != data.length -1) {
+                   popup.innerHTML += ", ";
+               }
+
+            }
+
+            $('#myPopup').fadeToggle("slow");
+        });
+    });
+});
 
 
 $(document).on('click', '.startchatbutton', function(){
-   // add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
     make_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
     add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
-    //getMessages(this.parentNode.parentNode.childNodes[0].innerHTML);
 });
 
 function make_chat(name){
-
     $.ajax({
         url: "Controller?action=MaakChat",
         type: "POST",
         data: "b=" + name,
         dataType: "json",
         success: function(json){
-
         },});
 }
 
 function add_chat(name) {
-    //console.log("TEST" + name);
     if (!isErAlEenChatWindow()) {
         var chatDiv = document.getElementById('chat');
         var childDivs = document.getElementById('chat').getElementsByTagName('div');
@@ -59,10 +73,7 @@ function add_chat(name) {
         paraDiv.id= "chat" + name;
         inputButton.addEventListener("click", function () {
             sendMessage(inputButton, name);
-
-
         })
-
 
         nieuwechat.appendChild(paraDiv);
         nieuwechat.appendChild(input);
@@ -99,14 +110,14 @@ function sendMessage(inputButton, namePartner) {
         data: "b=" + berichtObjectJSON,
         dataType: "json",
         success: function (json) {
-           //console.log(json);
+
 
         }
     });
 
 }
 function getMessages(name) {
-    //console.log(naam);
+
         $.ajax({
             url: "Controller?action=GetChatMessages",
             type: "POST",
@@ -114,7 +125,6 @@ function getMessages(name) {
             dataType: "json",
             success: function (json) {
                 console.log(json);
-                //setTimeout(getMessages(name), 5000);
                 addBerichtBijVenster(json, name);
         }
 
@@ -122,39 +132,6 @@ function getMessages(name) {
     setTimeout(function (){getMessages(name)}, 3000);
 
 }
-   /* function addBerichtBijVenster(berichtObject, name ) {
-
-        var bericht;
-        var zender;
-        var l = "chat" ;
-
-
-        for (var i = 0; i < berichtObject.length; i++) {
-
-            zender = berichtObject[i].ontvanger.firstName;
-            bericht = zender + ": " + berichtObject[i].text;
-
-
-            var berichtenRuimte = document.getElementById(l + berichtObject[i].sender.firstName);
-            if(berichtenRuimte == null){
-                berichtenRuimte = document.getElementById(l + berichtObject[i].ontvanger.firstName);
-                console.log(berichtenRuimte.id);
-            }
-                berichtenRuimte.innerHTML = "";
-
-            var node = document.createTextNode(bericht);
-            var berichtDiv = document.createElement("div");
-            if(berichtObject[i].sender.firstName ==  name){
-                berichtDiv.className == "berichtVanMij";
-            }
-            else{
-                berichtDiv.className = "berichtVanPartner";
-            }
-            berichtDiv.appendChild(node);
-            berichtDiv.appendChild(document.createElement('br'));
-            berichtenRuimte.appendChild(berichtDiv);
-        }
-    }*/
 
 function addBerichtBijVenster(berichtObject, naamPartner) {
     console.log(berichtObject);
@@ -182,26 +159,4 @@ function addBerichtBijVenster(berichtObject, naamPartner) {
 
 }
 
-    function closeButtonFunction(closeButton) {
-        closeButton.addEventListener("click", function () {
-            closeChat(closeButton);
-        });
-    }
-
-    function closeChat(closeButton) {
-
-        var partner = closeButton.parentNode.getElementsByClassName("partnerName")[0].innerHTML;
-        console.log(partner);
-
-        $.ajax({
-            url: "Controller?action=DeleteChat",
-            type: "POST",
-            data: "u=" + partner,
-            dataType: "json"
-        });
-
-        var parentParent = closeButton.parentNode.parentNode;
-        parentParent.parentNode.removeChild(parentParent);
-
-    }
 

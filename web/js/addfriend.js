@@ -17,10 +17,10 @@ function getData2(){
         if(addFriendsObject.status == 200){
 
            var serverResponse = addFriendsObject.responseText;
-           if(serverResponse == "NO"){
-               alert('Deze persoon bestaat niet');
+           if(serverResponse == "nope"){
+               alert('Deze persoon bestaat niet of is al een vriend');
            }
-            //alert(serverResponse);
+
             else {
                var div = document.getElementById('friendsDiv');
                var tr = document.createElement('tr');
@@ -34,8 +34,7 @@ function getData2(){
                tr.appendChild(td2);
                div.appendChild(tr);
            }
-           //var textNode = document.createTextNode(friendXML);
-          // p.appendChild(textNode);
+
 
 
 

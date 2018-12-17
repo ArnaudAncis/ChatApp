@@ -27,7 +27,7 @@ function getFriends() {
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var button = document.createElement('button');
-               // button.type = "button";
+
                 button.className = "startchatbutton";
                 button.innerHTML = "Open/Close&nbsp;Chat";
 

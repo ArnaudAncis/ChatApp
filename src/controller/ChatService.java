@@ -21,7 +21,6 @@ public class ChatService {
     }
 
 
-
     public Conversation newConversation(Person p, Person p1){
         Conversation c = new Conversation(p,p1);
         return c;

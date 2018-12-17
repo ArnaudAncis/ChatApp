@@ -25,11 +25,9 @@ public class GetChatMessages extends AsyncRequestHandler {
 
         Person p2 = Controller.getInstance().getChatService().getPersonService().getPersonByName(naam);
 
-
        return toJSON(Controller.getInstance().getChatService().getAllBerichtenFromUsers(p, p2));
 
 
-       // return toJSON(Controller.getInstance().getChatService().getAllBerichtenFromUser(p));
     }
 
     public String toJSON(List<Message> messages) throws JsonProcessingException {
