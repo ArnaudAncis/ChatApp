@@ -32,9 +32,6 @@ img {
     margin-top: 10px;
     width: 100%;
 }
-#blogDiv>div>h2,p{
-    margin: 10px;
-}
 #reactions, #reactionForm{
     margin-left: 10px;
 }
@@ -87,6 +84,9 @@ at>div>button{
 }
 #myPopup{
     display: none;
+}
+.blog{
+    padding: 10px;
 }
 .inputField{
     float : left;

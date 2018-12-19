@@ -18,21 +18,29 @@ function getData2(){
 
            var serverResponse = addFriendsObject.responseText;
            if(serverResponse == "nope"){
-               alert('Deze persoon bestaat niet of is al een vriend');
+               alert("This person doesn't exist, or is already a friend.");
+           }
+           else if(serverResponse == "nope2"){
+               alert('You can not add yourself.');
            }
 
             else {
                var div = document.getElementById('friendsDiv');
-               var tr = document.createElement('tr');
                var text = document.createTextNode(serverResponse);
-               var text2 = document.createTextNode('Online');
-               var td = document.createElement('td');
-               var td2 = document.createElement('td');
-               td.appendChild(text);
-               td2.appendChild(text2);
-               tr.appendChild(td);
-               tr.appendChild(td2);
-               div.appendChild(tr);
+               var row = div.insertRow();
+               var cell1 = row.insertCell(0);
+               var cell2 = row.insertCell(1);
+               var cell3 = row.insertCell(2);
+               var button = document.createElement('button');
+
+               button.className = "startchatbutton";
+               button.innerHTML = "Open/Close&nbsp;Chat";
+
+               cell1.innerHTML = serverResponse;
+               cell2.innerHTML = 'Online';
+               cell3.appendChild(button);
+
+
            }
 
 

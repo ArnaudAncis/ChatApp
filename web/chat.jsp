@@ -21,7 +21,13 @@
     <input type="text" id="changeStatus" />
     <input type="button" id="changeStatus1" value="Change" />
     <p id="status"></p>
+    <div>
+        <input type="button" id="changeStatusOnline" value="Online" onclick="change(this);" />
+        <input type="button" id="changeStatusOffline" value="Offline" onclick="change(this);"  />
+        <input type="button" id="changeStatusAway" value="Away"  onclick="change(this);" />
+    </div>
 </div>
+
 <div id ="statusDiv">
 
 <p>Welcome ${user.getFirstName()}!</p>
@@ -58,7 +64,12 @@
     <script type="text/javascript" src="js/jquery.js"></script>
 
     <script>
+        function change(elem) {
+            document.getElementById('changeStatus').value = elem.value;
+            document.getElementById('changeStatus1').click();
+            document.getElementById('changeStatus').value = "";
 
+        }
     </script>
 </div>
 
