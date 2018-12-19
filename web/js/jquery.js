@@ -4,6 +4,7 @@ $(document).ready(function(){
         $.get("http://localhost:8080/Controller?action=Users", function(data){
             var popup = document.getElementById("myPopup");
             var div = document.getElementById("popup");
+            var inp = document.getElementById("friendName");
             popup.innerHTML = "";
 
             if(div.innerHTML == "Click here to see all users"){
@@ -20,9 +21,7 @@ $(document).ready(function(){
                if(i != data.length -1) {
                    popup.innerHTML += ", ";
                }
-
             }
-
             $('#myPopup').fadeToggle("slow");
         });
     });
@@ -33,6 +32,10 @@ $(document).on('click', '.startchatbutton', function(){
     make_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
     add_chat(this.parentNode.parentNode.childNodes[0].innerHTML);
 });
+
+$(document).on('click', '.closeChat', function(){
+    $(this.parentNode).fadeToggle("slow");
+})
 
 function make_chat(name){
     $.ajax({
@@ -75,6 +78,10 @@ function add_chat(name) {
             sendMessage(inputButton, name);
         })
 
+        var p = document.createElement('p');
+        p.className = "closeChat";
+        p.innerHTML = "Close Chat";
+        nieuwechat.appendChild(p);
         nieuwechat.appendChild(paraDiv);
         nieuwechat.appendChild(input);
         nieuwechat.appendChild(inputButton);
@@ -102,7 +109,6 @@ function sendMessage(inputButton, namePartner) {
     berichtObject.bericht = berichtText;
     berichtObject.ontvanger = namePartner;
     var berichtObjectJSON = JSON.stringify(berichtObject);
-    console.log(berichtObjectJSON);
 
     $.ajax({
         url: "Controller?action=SendMessage",
@@ -124,7 +130,6 @@ function getMessages(name) {
             data: "naam=" + name,
             dataType: "json",
             success: function (json) {
-                console.log(json);
                 addBerichtBijVenster(json, name);
         }
 
@@ -134,7 +139,6 @@ function getMessages(name) {
 }
 
 function addBerichtBijVenster(berichtObject, naamPartner) {
-    console.log(berichtObject);
     var bericht;
     var zender;
     var berichtenRuimte = document.getElementById("chat" + naamPartner );

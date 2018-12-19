@@ -33,7 +33,9 @@ function getFriends() {
 
                 cell1.innerHTML = friend;
                 cell2.innerHTML = statusFriend;
-                cell3.appendChild(button);
+                if(statusFriend != "Offline") {
+                    cell3.appendChild(button);
+                }
             }
 
            setTimeout(friends, 5000);

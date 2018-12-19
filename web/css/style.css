@@ -49,6 +49,8 @@ img {
 
 #chat>input,h1{
     margin: 5;
+    float: left;
+    width: 58%;
 }
 #vriendenknop{
     display: block;
@@ -76,6 +78,7 @@ at>div>button{
     padding-right:5;
     padding-left:3;
     max-width:200;
+    width: 100%;
 }
 .inputButton{
     float:right;
@@ -84,6 +87,7 @@ at>div>button{
 }
 #myPopup{
     display: none;
+    font-weight: bold;
 }
 .blog{
     padding: 10px;
@@ -242,5 +246,9 @@ nav ul li a#actual {
 nav ul li#current {
     border-bottom: 1px solid black;
 }
+.closeChat{
+    font-size: 0.6em;
+    float: right;
 
+}
 
