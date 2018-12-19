@@ -11,7 +11,8 @@ public class AddFriendsHandler extends AsyncRequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String friend = request.getParameter("friend");
-        Person vriend = Controller.getInstance().getChatService().getPersonService().getPersonByName(friend);
+        //Person vriend = Controller.getInstance().getChatService().getPersonService().getPersonByName(friend);
+        Person vriend = Controller.getInstance().getChatService().getPersonService().getPerson(friend);
         if(vriend == null) {
             return "nope";
         }

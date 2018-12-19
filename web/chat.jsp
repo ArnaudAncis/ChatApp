@@ -48,7 +48,7 @@
     <div id="vriendenknop">
     <label class="addFriend">Add Friend</label>
     <input type="text" id="friendName" class="addFriend"/>
-    <input type="button" id="addFriendButton" value="Add" class="addFriend" />
+    <input type="button" id="addFriendButton" value="Add ( by email )" class="addFriend" />
     </div>
 
     <div id="chat" onload=""></div>

@@ -17,7 +17,7 @@ $(document).ready(function(){
             }
             for(var i = 0; i!=data.length; i++){
                 popup.innerHTML += " ";
-               popup.innerHTML += data[i].firstName;
+               popup.innerHTML += data[i].userId;
                if(i != data.length -1) {
                    popup.innerHTML += ", ";
                }
