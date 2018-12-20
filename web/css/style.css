@@ -44,7 +44,7 @@ img {
     right: 10;
 }
 #chat>div:nth-child(n){
-    margin-right:10px;
+    margin-right: 10;
 }
 
 #chat>input,h1{
@@ -63,7 +63,7 @@ img {
     height: 300px;
     padding-right:5;
     padding-left:5;
-
+    max-width: 210;
 }
 at>div>button{
     position: absolute;
